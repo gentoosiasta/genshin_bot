@@ -1,4 +1,4 @@
-BASE_URL = "https://raw.githubusercontent.com/gentoosiasta/genshin-bot/refs/heads/main/builds/"
+BASE_URL = "https://raw.githubusercontent.com/gentoosiasta/genshin_bot/refs/heads/main/builds/"
 IMAGENES = {
     "albedo": [BASE_URL + "Albedo.png"],
     "alhaitham": [BASE_URL + "Alhaitham.png"],
