@@ -156,7 +156,7 @@ async def get_character_info(update: Update, context: ContextTypes.DEFAULT_TYPE)
     except IndexError:
         await update.message.reply_text("Por favor, especifica un nombre de usuario y un personaje. Ejemplo: /char_info nombre personaje")
         return
-    
+
     users = load_users()
 
     try:
@@ -169,6 +169,23 @@ async def get_character_info(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
     await character_info(user['id'], character_name, update)
 
+async def enka_url(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Genera un enka url para un usuario."""
+    try:
+        user_name = context.args[0].lower()
+    except IndexError:
+        await update.message.reply_text("Por favor, especifica un nombre. Ejemplo: /enka nombre")
+        return
+
+    users = load_users()
+
+    try:
+        user = users[user_name]
+    except KeyError:
+        await update.message.reply_text(f"Lo siento, no encontré información para '{user_name}'")
+        return
+
+    await update.message.reply_text(f"https://enka.network/u/{user['id']}")
 
 def main() -> None:
     """Inicia el bot."""
@@ -181,6 +198,7 @@ def main() -> None:
     application.add_handler(CommandHandler("set_user", set_user_id))
     application.add_handler(CommandHandler("user_info", get_user_info))
     application.add_handler(CommandHandler("char_info", get_character_info))
+    application.add_handler(CommandHandler("enka", enka_url))
 
     # Inicia el bot para que escuche peticiones
     print("Bot iniciado. Presiona Ctrl+C para detener.")
