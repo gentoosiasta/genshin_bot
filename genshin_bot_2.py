@@ -189,14 +189,14 @@ async def enka_url(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
     await update.message.reply_text(f"https://enka.network/u/{user['id']}")
 
-def obtener_id_foto(update, context):
+async def obtener_id_foto(update, context):
     """Responde con el file_id de la foto que el usuario envía al bot."""
     # La foto puede venir en diferentes resoluciones, [-1] es la de mayor calidad.
     file_id = update.message.photo[-1].file_id
     
-    update.message.reply_text(f'He recibido la imagen. Su file_id es:')
+    await update.message.reply_text(f'He recibido la imagen. Su file_id es:')
     # Enviamos el ID en un mensaje separado para que sea fácil de copiar.
-    update.message.reply_text(file_id)
+    await update.message.reply_text(file_id)
 
 def main() -> None:
     """Inicia el bot."""
