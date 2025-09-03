@@ -9,6 +9,7 @@ from telegram.ext import Application, CommandHandler, ContextTypes
 from telegram.error import TelegramError
 from imagenes_personajes import IMAGENES
 from enka_user import general_info, character_info
+from scrap_stats import get_stats
 
 load_dotenv()
 
@@ -68,7 +69,7 @@ async def enviar_imagen(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
         return
 
     # Busca la lista de URLs en el diccionario
-    lista_urls = IMAGENES.get(nombre_clave)
+    lista_urls = IMAGENES[nombre_clave].get("url")
 
     if lista_urls:
         # Si se encontraron URLs, se envían
@@ -84,9 +85,9 @@ async def enviar_imagen(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
                 # Si falla el álbum, se envían una por una como respaldo
                 for url in lista_urls:
                     try:
-                       await context.bot.send_photo(chat_id=update.effective_chat.id, photo=url)
+                        await context.bot.send_photo(chat_id=update.effective_chat.id, photo=url)
                     except TelegramError as e_photo:
-                       await update.message.reply_text(f"No se pudo enviar la build desde {url}. Error: {e_photo}")
+                        await update.message.reply_text(f"No se pudo enviar la build desde {url}. Error: {e_photo}")
 
         # Opción 2: Enviar una por una (si es solo una imagen o más de 10)
         else:
@@ -96,7 +97,8 @@ async def enviar_imagen(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
                 except TelegramError as e:
                     # Informa al usuario si una URL específica falla
                     await update.message.reply_text(f"No se pudo enviar la build desde {url}. Asegúrate de que sea un enlace directo válido. Error: {e}")
-
+        await get_stats(IMAGENES[nombre_clave]["cve"], update)
+    
     else:
         # Si el nombre no está en el diccionario
         await update.message.reply_text(f"Lo siento, no encontré builds para '{nombre_clave}'. Usa /start para ver la lista de nombres disponibles.")
@@ -146,13 +148,13 @@ async def get_user_info(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     await update.message.reply_text(f"Mostrando información de {user_name} (ID: {user['id']})")
 
     await general_info(user['id'], update)
-    
+
 async def get_character_info(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Obtiene la información del personaje especificado."""
     try:
         user_name = context.args[0].lower()
         character_name = context.args[1].lower()
-        
+
     except IndexError:
         await update.message.reply_text("Por favor, especifica un nombre de usuario y un personaje. Ejemplo: /char_info nombre personaje")
         return
