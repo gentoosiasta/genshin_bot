@@ -5,7 +5,7 @@ import logging
 import json
 from dotenv import load_dotenv
 from telegram import Update, InputMediaPhoto
-from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 from telegram.error import TelegramError
 from imagenes_personajes import IMAGENES
 from enka_user import general_info, character_info
@@ -189,6 +189,15 @@ async def enka_url(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
     await update.message.reply_text(f"https://enka.network/u/{user['id']}")
 
+def obtener_id_foto(update, context):
+    """Responde con el file_id de la foto que el usuario envía al bot."""
+    # La foto puede venir en diferentes resoluciones, [-1] es la de mayor calidad.
+    file_id = update.message.photo[-1].file_id
+    
+    update.message.reply_text(f'He recibido la imagen. Su file_id es:')
+    # Enviamos el ID en un mensaje separado para que sea fácil de copiar.
+    update.message.reply_text(file_id)
+
 def main() -> None:
     """Inicia el bot."""
     print("Iniciando bot...")
@@ -201,6 +210,7 @@ def main() -> None:
     application.add_handler(CommandHandler("user_info", get_user_info))
     application.add_handler(CommandHandler("char_info", get_character_info))
     application.add_handler(CommandHandler("enka", enka_url))
+    application.add_handler(MessageHandler(filters.ChatType.PRIVATE & filters.PHOTO, obtener_id_foto))
 
     # Inicia el bot para que escuche peticiones
     print("Bot iniciado. Presiona Ctrl+C para detener.")
