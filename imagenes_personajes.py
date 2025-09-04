@@ -197,7 +197,7 @@ IMAGENES = {
         "url":[
             "AgACAgEAAxkBAAIBnmi4wx3pHMdocbXY4yNk98ju2qmPAAL9rTEb7jnIRRb0hZ-m5-JlAQADAgADeQADNgQ",
             "AgACAgEAAxkBAAIBn2i4wx2YgnIRn3X0aVQc-1GZ_mbnAAL-rTEb7jnIRWs9q-bFbIEzAQADAgADeQADNgQ",
-            "builds/Heizou_Support.png builds/Hu_Tao.png",
+            "AgACAgEAAxkBAAIBpGi4xAdqsRfIq1A05iIYUmehVlsFAAL_rTEb7jnIRb_OEcl7_JFQAQADAgADeQADNgQ",
             ],
         "cve": CVE_URL + "es-build-059-t3"},
     "hutao": {
@@ -364,7 +364,7 @@ IMAGENES = {
         "cve": CVE_URL + "es-build-070-t3"},
     "ningguang": {
         "url":[
-            "builds/Noelle.png builds/Ororon.png"
+            "AgACAgEAAxkBAAICHWi4x5IoBdfEeL6BLWFTj_tGfVc0AAIorjEb7jnIRY4wCj3CUFH8AQADAgADeQADNgQ"
             ],
         "cve": CVE_URL + "es-build-027-t3"},
     "noelle": {
@@ -374,7 +374,7 @@ IMAGENES = {
         "cve": CVE_URL + "es-build-034-t3"},
     "ororon": {
         "url":[
-            "builds/Qiqi.png builds/Raiden_Shogun_Aggravate.png"
+            "AgACAgEAAxkBAAICI2i4x83UfDDWmXI4JUxXwHWhS4ttAAIqrjEb7jnIRezPvz1GGR-_AQADAgADeQADNgQ"
             ],
         "cve": CVE_URL + "es-build-105-t3"},
     "qiqi": {
@@ -386,7 +386,7 @@ IMAGENES = {
         "url":[
             "AgACAgEAAxkBAAICKWi4x-emJhJtrJSgt1xsvWVGNGQJAAIsrjEb7jnIRdaOFjAGu4PVAQADAgADeQADNgQ",
             "AgACAgEAAxkBAAICLmi4yAZgWGF3_aXbAWXbZfijpl3HAAItrjEb7jnIRTIN38gEWZf4AQADAgADeQADNgQ",
-            "AAgACAgEAAxkBAAICL2i4yAb6s_GE5J5s9c4qWsf1OcCHAAIurjEb7jnIRfpWKBDeofXSAQADAgADeQADNgQ",
+            "AgACAgEAAxkBAAICL2i4yAb6s_GE5J5s9c4qWsf1OcCHAAIurjEb7jnIRfpWKBDeofXSAQADAgADeQADNgQ",
             ],
         "cve": CVE_URL + "es-build-042-t3"},
     "razor": {
