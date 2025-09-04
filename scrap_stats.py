@@ -15,12 +15,20 @@ async def get_stats(url, update) -> None:
 
         soup = BeautifulSoup(html, 'html.parser')
 
-        stats = soup.find_all('div', class_='px-2')
-        texto = "STATS DESEADAS:\n"
-        for stat in stats:
-            texto += stat.find('span').get_text()
-            print(texto)
-            await update.message.reply_text(texto + "\n")
+        div_tag = soup.find('div', class_='px-2')
+
+        if div_tag:
+            for span_tag in div_tag.find_all('br'):
+                # print(span_tag.get_text())
+                span_tag.replace_with('\n')
+
+            texto = "ESTADÍSTICAS DESEADAS:\n"
+            texto += div_tag.get_text()
+            # print(texto)
+            await update.message.reply_text(texto)
+            await update.message.reply_text("Para información más detallada, consulta el enlace:\n" + url)
+        else:
+            await update.message.reply_text("No se encontraron estadísticas desde el enlace:\n" + url)
 
     else:
         await update.message.reply_text(f"Error al conectar. Código: {response.status_code}")
