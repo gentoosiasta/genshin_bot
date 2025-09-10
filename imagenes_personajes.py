@@ -1,6 +1,10 @@
 BASE_URL = "https://raw.githubusercontent.com/gentoosiasta/genshin_bot/refs/heads/main/builds/"
 CVE_URL = "https://genshin.ch/"
 IMAGENES = {
+    # "aino": {
+    #     "url": [""],
+    #     "cve": CVE_URL + "es-build-121-t3"
+    #     },
     "albedo": {
         "url":[
             "AgACAgEAAxkBAAIBDmi4jwECBu_gZqmqJn9WF2yZeFrNAAIYrzEb7jnARXJkkQuvaclkAQADAgADeQADNgQ",
@@ -292,6 +296,10 @@ IMAGENES = {
             "AgACAgEAAxkBAAIB5mi4xgSiUcVn2M22eyG9d-zH0i2SAAIVrjEb7jnIRRXDd16JnB3FAQADAgADeQADNgQ"
             ],
         "cve": CVE_URL + "es-build-108-t3"},
+    "lauma": {
+        "url": ["AgACAgEAAxkBAAIDFmjBjAjzm5r-FYUkHAABW7s0ySYM-gACYK4xGxnkCEayY2qAAi4fYAEAAwIAA3kAAzYE"],
+        "cve": CVE_URL + "es-build-119-t3"
+        },
     "layla": {
         "url":[
             "AgACAgEAAxkBAAIB52i4xgTwiGtJFF2Q2xz-bkmhXQABXAACFq4xG-45yEUZ94fLm-DBJQEAAwIAA3kAAzYE",
